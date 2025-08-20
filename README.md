@@ -16,7 +16,7 @@
 ## URLs
 - **Development**: https://3000-ikgowhvu8oapj360xfygw-6532622b.e2b.dev
 - **Production**: Will be deployed to Cloudflare Pages
-- **GitHub**: Not yet deployed
+- **GitHub**: https://github.com/avispro20/Cedarvis_International
 
 ## Tech Stack
 - **Framework**: Hono (Lightweight, edge-optimized)
