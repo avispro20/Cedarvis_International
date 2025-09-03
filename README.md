@@ -60,10 +60,20 @@ cedarvis/
 
 ### 1. Homepage
 - **Hero Section**: Animated particles, parallax background, African patterns
-- **Services Preview**: 6 key service offerings with hover effects
-- **Stats Section**: Impact metrics (500+ projects, 200+ clients, etc.)
-- **Testimonials**: Dynamic carousel of client testimonials
-- **Blog Highlights**: Latest 3 blog posts
+- **Services Slideshow**: 6 key service offerings with auto-rotating carousel
+  - 3 items visible on desktop, 2 on tablet, 1 on mobile
+  - Auto-play with 4-second intervals
+  - Navigation arrows and dot indicators
+  - Touch/swipe support for mobile
+- **Stats Section**: Animated counters (500+ projects, 200+ clients, etc.)
+- **Testimonials Slideshow**: Dynamic carousel of client testimonials
+  - Loaded dynamically from API endpoint
+  - Auto-play with 5-second intervals
+  - Responsive design with smooth transitions
+- **Blog Slideshow**: Latest insights and articles
+  - Dynamic content from API endpoint  
+  - Auto-play with 6-second intervals
+  - Featured images and formatted excerpts
 - **Newsletter**: Email subscription form
 - **CTAs**: "Hire Us", "Join FTLAfrica", "Partner With Us"
 
@@ -104,12 +114,19 @@ cedarvis/
 - **Headings**: Space Grotesk
 - **Body**: Plus Jakarta Sans
 
-### Animations
+### Animations & Interactive Elements
 - Floating particles in hero section
 - Scroll-triggered animations
 - Hover effects on cards
 - Smooth page transitions
 - Parallax scrolling effects
+- **Slideshow Components**:
+  - Services carousel with navigation controls
+  - Testimonials auto-rotating display
+  - Blog posts slideshow with dynamic content
+  - Touch/swipe support for mobile devices
+  - Responsive breakpoints for different screen sizes
+- Count-up animations for statistics
 
 ## Development
 
@@ -173,11 +190,23 @@ npm run deploy
 - [ ] Implement advanced analytics tracking
 - [ ] Add progressive web app (PWA) features
 
+## Recent Updates (2025-09-03)
+- ✅ **Logo Update**: Replaced logo with new transparent version
+- ✅ **Favicon Added**: Added Cedarvis favicon with transparent background
+- ✅ **Slideshows Implemented**:
+  - Services section: 6 cards with auto-rotation
+  - Testimonials: Dynamic loading from API
+  - Blog posts: Dynamic loading with formatted content
+  - All slideshows include navigation, auto-play, and touch support
+- ✅ **Blog Posts**: Added 3 comprehensive SEO-optimized articles
+- ✅ **Testimonials**: Added 6 detailed client testimonials
+- ✅ **GitHub Integration**: Repository connected and code pushed
+
 ## Status
-- **Development**: ✅ Complete
+- **Development**: ✅ Complete with all requested features
 - **Testing**: ✅ Running on development server
-- **Production**: ⏳ Ready for deployment
-- **Last Updated**: 2024-01-18
+- **Production**: ⏳ Ready for deployment to Cloudflare Pages
+- **Last Updated**: 2025-09-03
 
 ## Notes
 - Website uses lightweight Hono framework instead of React/Next.js for better edge performance
