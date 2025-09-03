@@ -28,6 +28,11 @@ export const Layout = ({
         <meta name="description" content="Transforming Africa Through Tech, Training & Talent. Leading Digital Tech & Business Solutions Agency.">
         <meta name="keywords" content="Digital Marketing, Web Development, Mobile Apps, Data Analytics, Cybersecurity, Cloud Services, DevOps, Training, Africa, Tech">
         
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/static/images/favicon.png">
+        <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
+        <link rel="apple-touch-icon" href="/static/images/favicon.png">
+        
         <!-- Open Graph -->
         <meta property="og:title" content="${title} - Cedarvis International">
         <meta property="og:description" content="Transforming Africa Through Tech, Training & Talent">
@@ -99,7 +104,7 @@ export const Layout = ({
                 <div class="flex items-center justify-between py-4">
                     <!-- Logo -->
                     <a href="/" class="flex items-center">
-                        <img src="/static/images/cedarvis-logo.png" alt="Cedarvis International" class="h-12 w-auto">
+                        <img src="/static/images/cedarvis-logo-new.png" alt="Cedarvis International" class="h-14 w-auto object-contain" style="filter: drop-shadow(0 0 2px rgba(255,255,255,0.1));">
                     </a>
                     
                     <!-- Desktop Menu -->
@@ -148,7 +153,7 @@ export const Layout = ({
                     <!-- Company Info -->
                     <div>
                         <div class="mb-4">
-                            <img src="/static/images/cedarvis-logo.png" alt="Cedarvis International" class="h-10 w-auto brightness-0 invert">
+                            <img src="/static/images/cedarvis-logo-new.png" alt="Cedarvis International" class="h-12 w-auto" style="filter: brightness(0) invert(1);">
                         </div>
                         <p class="text-gray-400 text-sm mb-4">
                             Transforming Africa Through Tech, Training & Talent

@@ -61,96 +61,110 @@ export const renderHome = (c: Context) => {
         </div>
     </section>
     
-    <!-- Services Preview -->
+    <!-- Services Preview with Slideshow -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 overflow-hidden">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-space font-bold text-cedarvis-dark mb-4">Our Services</h2>
                 <p class="text-xl text-gray-600">Comprehensive digital solutions for modern African businesses</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-bullhorn text-white text-2xl"></i>
+            <div id="services-slideshow" class="slideshow-container relative">
+                <div class="slideshow-wrapper">
+                    <!-- Service Card 1 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-bullhorn text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Digital Marketing & Media</h3>
+                                <p class="text-gray-600 mb-4">Strategic digital campaigns that drive growth and engagement across all channels.</p>
+                                <a href="/services/digital-marketing" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Digital Marketing & Media</h3>
-                        <p class="text-gray-600 mb-4">Strategic digital campaigns that drive growth and engagement across all channels.</p>
-                        <a href="/services/digital-marketing" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Service Card 2 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-laptop-code text-white text-2xl"></i>
+                    
+                    <!-- Service Card 2 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Web & Mobile Development</h3>
+                                <p class="text-gray-600 mb-4">Custom applications that deliver exceptional user experiences and business value.</p>
+                                <a href="/services/web-development" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Web & Mobile Development</h3>
-                        <p class="text-gray-600 mb-4">Custom applications that deliver exceptional user experiences and business value.</p>
-                        <a href="/services/web-development" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Service Card 3 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                    
+                    <!-- Service Card 3 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-chart-line text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Data Analytics</h3>
+                                <p class="text-gray-600 mb-4">Transform data into actionable insights that drive informed business decisions.</p>
+                                <a href="/services/data-analytics" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Data Analytics</h3>
-                        <p class="text-gray-600 mb-4">Transform data into actionable insights that drive informed business decisions.</p>
-                        <a href="/services/data-analytics" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Service Card 4 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    
+                    <!-- Service Card 4 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Cybersecurity Services</h3>
+                                <p class="text-gray-600 mb-4">Protect your digital assets with comprehensive security solutions and expertise.</p>
+                                <a href="/services/cybersecurity" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Cybersecurity Services</h3>
-                        <p class="text-gray-600 mb-4">Protect your digital assets with comprehensive security solutions and expertise.</p>
-                        <a href="/services/cybersecurity" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Service Card 5 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-cloud text-white text-2xl"></i>
+                    
+                    <!-- Service Card 5 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-cloud text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Cloud & DevOps</h3>
+                                <p class="text-gray-600 mb-4">Modern infrastructure solutions for scalable and efficient operations.</p>
+                                <a href="/services/cloud-devops" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Cloud & DevOps</h3>
-                        <p class="text-gray-600 mb-4">Modern infrastructure solutions for scalable and efficient operations.</p>
-                        <a href="/services/cloud-devops" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Service Card 6 -->
-                <div class="service-card group">
-                    <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                    
+                    <!-- Service Card 6 -->
+                    <div class="slideshow-slide three-items px-4">
+                        <div class="service-card group">
+                            <div class="p-8 border-2 border-gray-100 rounded-xl hover:border-cedarvis-gold transition-all duration-300 hover:shadow-xl h-full">
+                                <div class="w-16 h-16 bg-gradient-to-br from-cedarvis-green to-cedarvis-gold rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Corporate Training</h3>
+                                <p class="text-gray-600 mb-4">Empower your team with cutting-edge skills and knowledge for the digital age.</p>
+                                <a href="/services/training" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                    Learn More <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Corporate Training</h3>
-                        <p class="text-gray-600 mb-4">Empower your team with cutting-edge skills and knowledge for the digital age.</p>
-                        <a href="/services/training" class="text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
-                            Learn More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -187,30 +201,34 @@ export const renderHome = (c: Context) => {
         </div>
     </section>
     
-    <!-- Testimonials -->
+    <!-- Testimonials with Slideshow -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 overflow-hidden">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-space font-bold text-cedarvis-dark mb-4">Client Testimonials</h2>
                 <p class="text-xl text-gray-600">What our clients say about us</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-container">
-                <!-- Testimonials will be loaded dynamically -->
+            <div id="testimonials-slideshow" class="slideshow-container relative">
+                <div class="slideshow-wrapper" id="testimonials-container">
+                    <!-- Testimonials will be loaded dynamically via JavaScript -->
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Blog Highlights -->
+    <!-- Blog Highlights with Slideshow -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 overflow-hidden">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-space font-bold text-cedarvis-dark mb-4">Latest Insights</h2>
                 <p class="text-xl text-gray-600">Stay updated with tech trends and industry insights</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="blog-container">
-                <!-- Blog posts will be loaded dynamically -->
+            <div id="blog-slideshow" class="slideshow-container relative">
+                <div class="slideshow-wrapper" id="blog-container">
+                    <!-- Blog posts will be loaded dynamically via JavaScript -->
+                </div>
             </div>
             
             <div class="text-center mt-12">

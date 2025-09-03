@@ -303,3 +303,289 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Slideshow Functionality
+class Slideshow {
+    constructor(container, options = {}) {
+        this.container = container;
+        this.wrapper = container.querySelector('.slideshow-wrapper');
+        this.slides = container.querySelectorAll('.slideshow-slide');
+        this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.itemsPerView = options.itemsPerView || 1;
+        this.autoPlay = options.autoPlay !== false;
+        this.autoPlayInterval = options.interval || 5000;
+        this.timer = null;
+        
+        this.init();
+    }
+    
+    init() {
+        // Create navigation buttons
+        this.createNavigation();
+        
+        // Create dots
+        this.createDots();
+        
+        // Start autoplay
+        if (this.autoPlay) {
+            this.startAutoPlay();
+        }
+        
+        // Handle responsive
+        this.handleResponsive();
+        
+        // Add touch/swipe support
+        this.addTouchSupport();
+    }
+    
+    createNavigation() {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'slideshow-nav prev';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.onclick = () => this.prevSlide();
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'slideshow-nav next';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.onclick = () => this.nextSlide();
+        
+        this.container.appendChild(prevBtn);
+        this.container.appendChild(nextBtn);
+    }
+    
+    createDots() {
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'slideshow-dots';
+        
+        const totalDots = Math.ceil(this.totalSlides / this.itemsPerView);
+        
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'slideshow-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => this.goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+        
+        this.container.parentElement.appendChild(dotsContainer);
+        this.dots = dotsContainer.querySelectorAll('.slideshow-dot');
+    }
+    
+    updateSlidePosition() {
+        const slideWidth = 100 / this.itemsPerView;
+        const translateX = -this.currentSlide * slideWidth;
+        this.wrapper.style.transform = `translateX(${translateX}%)`;
+        
+        // Update dots
+        if (this.dots) {
+            this.dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === Math.floor(this.currentSlide / this.itemsPerView));
+            });
+        }
+    }
+    
+    nextSlide() {
+        const maxSlide = this.totalSlides - this.itemsPerView;
+        this.currentSlide = (this.currentSlide + this.itemsPerView > maxSlide) ? 0 : this.currentSlide + this.itemsPerView;
+        this.updateSlidePosition();
+        
+        if (this.autoPlay) {
+            this.resetAutoPlay();
+        }
+    }
+    
+    prevSlide() {
+        const maxSlide = this.totalSlides - this.itemsPerView;
+        this.currentSlide = (this.currentSlide - this.itemsPerView < 0) ? maxSlide : this.currentSlide - this.itemsPerView;
+        this.updateSlidePosition();
+        
+        if (this.autoPlay) {
+            this.resetAutoPlay();
+        }
+    }
+    
+    goToSlide(index) {
+        this.currentSlide = index * this.itemsPerView;
+        this.updateSlidePosition();
+        
+        if (this.autoPlay) {
+            this.resetAutoPlay();
+        }
+    }
+    
+    startAutoPlay() {
+        this.timer = setInterval(() => {
+            this.nextSlide();
+        }, this.autoPlayInterval);
+    }
+    
+    stopAutoPlay() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+    }
+    
+    resetAutoPlay() {
+        this.stopAutoPlay();
+        this.startAutoPlay();
+    }
+    
+    handleResponsive() {
+        const checkWidth = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                this.itemsPerView = 1;
+            } else if (width < 1024) {
+                this.itemsPerView = Math.min(2, this.slides.length);
+            } else {
+                this.itemsPerView = Math.min(3, this.slides.length);
+            }
+            this.updateSlidePosition();
+        };
+        
+        window.addEventListener('resize', checkWidth);
+        checkWidth();
+    }
+    
+    addTouchSupport() {
+        let startX = 0;
+        let endX = 0;
+        
+        this.wrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        this.wrapper.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+        
+        this.wrapper.addEventListener('touchend', () => {
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
+            }
+        });
+    }
+}
+
+// Initialize slideshows when DOM is ready
+document.addEventListener('DOMContentLoaded', async function() {
+    // Services Slideshow
+    const servicesContainer = document.querySelector('#services-slideshow');
+    if (servicesContainer) {
+        new Slideshow(servicesContainer, {
+            itemsPerView: 3,
+            autoPlay: true,
+            interval: 4000
+        });
+    }
+    
+    // Load and initialize Testimonials Slideshow
+    const testimonialsWrapper = document.querySelector('#testimonials-container');
+    if (testimonialsWrapper) {
+        try {
+            const response = await fetch('/api/testimonials');
+            const testimonials = await response.json();
+            
+            // Create testimonial slides
+            testimonials.forEach(testimonial => {
+                const slide = document.createElement('div');
+                slide.className = 'slideshow-slide three-items px-4';
+                slide.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-lg p-8 h-full flex flex-col">
+                        <div class="flex items-center mb-6">
+                            <img src="${testimonial.image}" alt="${testimonial.name}" 
+                                 class="w-16 h-16 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-semibold text-lg text-cedarvis-dark">${testimonial.name}</h4>
+                                <p class="text-gray-600">${testimonial.position}</p>
+                                <p class="text-sm text-cedarvis-gold">${testimonial.company}</p>
+                            </div>
+                        </div>
+                        <div class="flex mb-4">
+                            ${Array(testimonial.rating).fill().map(() => '<i class="fas fa-star text-cedarvis-gold"></i>').join('')}
+                        </div>
+                        <p class="text-gray-700 italic flex-grow">"${testimonial.testimonial}"</p>
+                    </div>
+                `;
+                testimonialsWrapper.appendChild(slide);
+            });
+            
+            // Initialize slideshow after content is loaded
+            const testimonialsContainer = document.querySelector('#testimonials-slideshow');
+            new Slideshow(testimonialsContainer, {
+                itemsPerView: 3,
+                autoPlay: true,
+                interval: 5000
+            });
+        } catch (error) {
+            console.error('Error loading testimonials:', error);
+        }
+    }
+    
+    // Load and initialize Blog Slideshow
+    const blogWrapper = document.querySelector('#blog-container');
+    if (blogWrapper) {
+        try {
+            const response = await fetch('/api/blog/recent');
+            const posts = await response.json();
+            
+            // Create blog post slides
+            posts.forEach(post => {
+                const slide = document.createElement('div');
+                slide.className = 'slideshow-slide three-items px-4';
+                
+                // Format date
+                const date = new Date(post.publishedAt);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                
+                slide.innerHTML = `
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col group hover:shadow-xl transition-shadow">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${post.image}" alt="${post.title}" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-cedarvis-gold text-white px-3 py-1 rounded-full text-sm">
+                                    ${post.category}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                                <span><i class="far fa-calendar mr-1"></i> ${formattedDate}</span>
+                                <span><i class="far fa-clock mr-1"></i> ${post.readTime}</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-cedarvis-dark mb-3 line-clamp-2 group-hover:text-cedarvis-green transition-colors">
+                                ${post.title}
+                            </h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3 flex-grow">${post.excerpt}</p>
+                            <a href="/blog/${post.slug}" class="inline-flex items-center text-cedarvis-gold font-medium hover:text-cedarvis-green transition-colors">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+                blogWrapper.appendChild(slide);
+            });
+            
+            // Initialize slideshow after content is loaded
+            const blogContainer = document.querySelector('#blog-slideshow');
+            new Slideshow(blogContainer, {
+                itemsPerView: 3,
+                autoPlay: true,
+                interval: 6000
+            });
+        } catch (error) {
+            console.error('Error loading blog posts:', error);
+        }
+    }
+});
