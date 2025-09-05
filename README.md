@@ -128,6 +128,30 @@ cedarvis/
   - Responsive breakpoints for different screen sizes
 - Count-up animations for statistics
 
+## Admin Dashboard
+
+### Access Credentials
+- **URL**: `/admin/login`
+- **Username**: `admin`
+- **Password**: `Cedarvis@2024`
+
+### Features
+- **Content Management**: Edit all website content from one place
+- **Blog Editor**: Rich text editor with full formatting capabilities
+  - Bold, italic, underline, strikethrough
+  - Headers (H1-H6)
+  - Lists (ordered/unordered)
+  - Links, images, videos
+  - Code blocks and quotes
+  - Text alignment and colors
+- **Media Library**: 
+  - Drag-and-drop file upload
+  - Grid/list view toggle
+  - Image preview and management
+  - Copy image URLs
+- **SEO Management**: Meta titles, descriptions, and URL slugs
+- **Dashboard Analytics**: View statistics and recent activity
+
 ## Development
 
 ### Local Development
@@ -146,6 +170,10 @@ pm2 logs cedarvis --nostream
 
 # Stop server
 pm2 stop cedarvis
+
+# Access the site
+# Public: http://localhost:3000
+# Admin: http://localhost:3000/admin/login
 ```
 
 ### Production Deployment
@@ -158,6 +186,8 @@ npm run deploy
 ```
 
 ## API Endpoints
+
+### Public Routes
 - `GET /` - Homepage
 - `GET /about` - About page
 - `GET /services` - Services listing
@@ -167,10 +197,25 @@ npm run deploy
 - `GET /blog` - Blog listing
 - `GET /careers` - Career opportunities
 - `GET /contact` - Contact page
+
+### API Routes
 - `POST /api/contact` - Contact form submission
 - `POST /api/newsletter` - Newsletter subscription
 - `GET /api/testimonials` - Fetch testimonials
 - `GET /api/blog` - Fetch blog posts
+- `GET /api/blog/recent` - Fetch recent blog posts
+
+### Admin Routes (Protected)
+- `GET /admin/login` - Admin login page
+- `POST /admin/login` - Admin authentication
+- `GET /admin` - Admin dashboard
+- `GET /admin/blog` - Blog post management
+- `GET /admin/blog/new` - Create new blog post
+- `GET /admin/blog/edit/:id` - Edit existing blog post
+- `GET /admin/media` - Media library
+- `POST /api/admin/blog` - Save blog post
+- `DELETE /api/admin/blog/:id` - Delete blog post
+- `POST /api/admin/media/upload` - Upload media files
 
 ## Performance Optimizations
 - Edge deployment with Cloudflare Workers
@@ -201,6 +246,12 @@ npm run deploy
 - ✅ **Blog Posts**: Added 3 comprehensive SEO-optimized articles
 - ✅ **Testimonials**: Added 6 detailed client testimonials
 - ✅ **GitHub Integration**: Repository connected and code pushed
+- ✅ **Admin Dashboard**: Complete content management system added
+  - Secure authentication system
+  - Blog post editor with rich text formatting
+  - Media library with drag-and-drop upload
+  - Dashboard analytics and quick actions
+  - Responsive admin interface
 
 ## Status
 - **Development**: ✅ Complete with all requested features
