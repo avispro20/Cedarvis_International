@@ -14,9 +14,10 @@
   - Performance-optimized with Cloudflare Pages
 
 ## URLs
-- **Development**: https://3000-ikgowhvu8oapj360xfygw-6532622b.e2b.dev
-- **Production**: Will be deployed to Cloudflare Pages
+- **Production**: https://cedarvis-international.pages.dev
+- **Admin Panel**: https://cedarvis-international.pages.dev/admin/login
 - **GitHub**: https://github.com/avispro20/Cedarvis_International
+- **Development**: Local development at http://localhost:3000
 
 ## Tech Stack
 - **Framework**: Hono (Lightweight, edge-optimized)
@@ -181,9 +182,24 @@ pm2 stop cedarvis
 # Build for production
 npm run build
 
-# Deploy to Cloudflare Pages
+# Deploy to Cloudflare Pages (initial deployment)
+npx wrangler pages project create cedarvis-international --production-branch main
+npx wrangler pages deploy dist --project-name cedarvis-international
+
+# Subsequent deployments
+npx wrangler pages deploy dist --project-name cedarvis-international
+
+# Or use npm script
 npm run deploy
 ```
+
+### Deployment Information
+- **Platform**: Cloudflare Pages
+- **Project Name**: cedarvis-international
+- **Production URL**: https://cedarvis-international.pages.dev
+- **Deployment ID**: 800f5729
+- **Branch**: main
+- **Build Output**: ./dist
 
 ## API Endpoints
 
@@ -255,9 +271,11 @@ npm run deploy
 
 ## Status
 - **Development**: ✅ Complete with all requested features
-- **Testing**: ✅ Running on development server
-- **Production**: ⏳ Ready for deployment to Cloudflare Pages
+- **Testing**: ✅ Fully tested and operational
+- **Production**: ✅ Successfully deployed to Cloudflare Pages
+- **Live Site**: 🌐 https://cedarvis-international.pages.dev
 - **Last Updated**: 2025-09-03
+- **Deployment Date**: 2025-09-03
 
 ## Notes
 - Website uses lightweight Hono framework instead of React/Next.js for better edge performance
