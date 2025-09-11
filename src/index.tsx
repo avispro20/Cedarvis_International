@@ -3,6 +3,7 @@ import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { setCookie, getCookie, deleteCookie } from 'hono/cookie'
 import { renderHome } from './pages/home'
+import { renderImprovedHome } from './pages/home-improved'
 import { renderAbout } from './pages/about'
 import { renderServices } from './pages/services'
 import { renderFTLAfrica } from './pages/ftlafrica'
@@ -21,6 +22,7 @@ import { renderAdminDashboard } from './pages/admin/dashboard'
 import { renderBlogEditor } from './pages/admin/blog-editor'
 import { renderBlogList } from './pages/admin/blog-list'
 import { renderMediaLibrary } from './pages/admin/media-library'
+import { renderAdminSettings } from './pages/admin/settings'
 
 type Bindings = {
   // Future bindings for D1, KV, R2 as needed
@@ -36,7 +38,7 @@ app.use('/static/*', serveStatic({ root: './public' }))
 app.use('/assets/*', serveStatic({ root: './public' }))
 
 // Page Routes
-app.get('/', (c) => renderHome(c))
+app.get('/', (c) => renderImprovedHome(c))  // Using improved home page
 app.get('/about', (c) => renderAbout(c))
 app.get('/services', (c) => renderServices(c))
 app.get('/services/:slug', (c) => renderServiceDetail(c))
@@ -169,6 +171,33 @@ app.post('/api/admin/blog', adminAuth, async (c) => {
   })
 })
 
+// Dashboard stats API
+app.get('/api/admin/stats', adminAuth, async (c) => {
+  // In production, calculate from database
+  // For now, return sample data
+  return c.json({
+    blogPosts: 24,
+    services: 12,
+    testimonials: 18,
+    teamMembers: 8,
+    pageViews: 12543,
+    uniqueVisitors: 3821,
+    avgSessionDuration: '4m 32s',
+    bounceRate: '32.4%'
+  })
+})
+
+// Settings API for brand identity
+app.post('/api/admin/settings/brand', adminAuth, async (c) => {
+  const body = await c.req.parseBody()
+  // Handle file uploads and settings update
+  // In production, save to storage and database
+  return c.json({ 
+    success: true, 
+    message: 'Brand settings updated successfully'
+  })
+})
+
 app.delete('/api/admin/blog/:id', adminAuth, async (c) => {
   const id = c.req.param('id')
   // In production, delete from database
@@ -212,8 +241,6 @@ app.get('/admin/team', adminAuth, (c) => {
   return c.html(`<h1>Team Manager - Coming Soon</h1>`)
 })
 
-app.get('/admin/settings', adminAuth, (c) => {
-  return c.html(`<h1>Settings - Coming Soon</h1>`)
-})
+app.get('/admin/settings', adminAuth, (c) => renderAdminSettings(c))
 
 export default app
