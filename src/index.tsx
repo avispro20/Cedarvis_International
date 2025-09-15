@@ -4,8 +4,11 @@ import { serveStatic } from 'hono/cloudflare-workers'
 import { setCookie, getCookie, deleteCookie } from 'hono/cookie'
 import { renderHome } from './pages/home'
 import { renderImprovedHome } from './pages/home-improved'
+import { renderRefactoredHome } from './pages/home-refactored'
 import { renderAbout } from './pages/about'
+import { renderRefactoredAbout } from './pages/about-refactored'
 import { renderServices } from './pages/services'
+import { renderRefactoredServices } from './pages/services-refactored'
 import { renderFTLAfrica } from './pages/ftlafrica'
 import { renderPortfolio } from './pages/portfolio'
 import { renderBlog } from './pages/blog'
@@ -37,10 +40,10 @@ app.use('/api/*', cors())
 app.use('/static/*', serveStatic({ root: './public' }))
 app.use('/assets/*', serveStatic({ root: './public' }))
 
-// Page Routes
-app.get('/', (c) => renderImprovedHome(c))  // Using improved home page
-app.get('/about', (c) => renderAbout(c))
-app.get('/services', (c) => renderServices(c))
+// Page Routes - Using refactored versions with master layout
+app.get('/', (c) => renderRefactoredHome(c))  // Using refactored home with master layout
+app.get('/about', (c) => renderRefactoredAbout(c))  // Using refactored about with master layout
+app.get('/services', (c) => renderRefactoredServices(c))  // Using refactored services with master layout
 app.get('/services/:slug', (c) => renderServiceDetail(c))
 app.get('/ftlafrica', (c) => renderFTLAfrica(c))
 app.get('/portfolio', (c) => renderPortfolio(c))
